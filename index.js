@@ -4,15 +4,11 @@ var app = express()
 app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
 
-var route_install = function(request, response) {
-  res.sendfile('./public/install.js');
- }
-app.get('/install', route_install);
+var route_install = require('./routes/install');
+app.use('/install', route_install);
 
-var route_finish_auth = function(request, response) { 
-    res.sendfile('./public/finish_auth.js');
-}
-app.get('/finish_auth', route_finish_auth);
+var route_finish_auth = require('./routes/finish_auth');
+app.use('/finish_auth', route_finish_auth);
 
 app.get('/', function(request, response) {
   response.send('Hello World!')
