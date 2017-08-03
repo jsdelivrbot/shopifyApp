@@ -1,0 +1,1 @@
+<script async="true" type="text/javascript" src="https://secondopinions.help/api/v1/scripts/feedback-plugins.js?app_id=48af208a2e26beeef9a3e0ff9c8287076b17fd878ceec5c2&app_secret=04dd6d81dceeb7e933bdc4609b39825ef614faa05a2686ebf1f598a2cbf93011ac307320c6fb269ce6ebafa594a3e622e513f1a3e368871d7efe3eb1d590a569"></script>
