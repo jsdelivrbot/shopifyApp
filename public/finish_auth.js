@@ -34,7 +34,7 @@ router.get('/finish_auth', function(req, res){
     Shopify.exchange_temporary_token(query_params, function(err, data){
         shopify_hidden_at=data['access_token'];
         // YOU HAVE SAVED YOUR ACCESS_TOKEN YAY!
-        console.log(shopify_hidden_at)
+        console.log("HELLO"+data)
     });
 });
 
