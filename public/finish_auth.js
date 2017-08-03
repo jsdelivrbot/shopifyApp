@@ -5,16 +5,18 @@ var shopifyAPI = require('shopify-node-api');//SHOPIFY
 
 //DEFINE LOCAL VARIABLES
 var shopify_hidden_at = "";//define empty variable for access token
-var ldb_uri_base = "https://nameless-ocean-79702.herokuapp.com";//THIS IS ONLY AN EXAMPLE!!
+var ldb_uri_base = "nameless-ocean-79702.herokuapp.com";//THIS IS ONLY AN EXAMPLE!!
 var shopify_hidden_ss = "275648faae5fca94ba4950ee18fd2d66";
 var shopify_hidden_ak = "167922d6d9ace8e71795cb4c10074cf4";
 var shopify_hidden_shopname = "second-opinions-store";
 
 
-router.get('/', function(req, res){
+router.get('/finish_auth', function(req, res){
     //This is where it all happens: this is what happens you access "myn00bapp.herokuapp.com/install/"
     
     var query_params = req.query;
+    
+    console.log("FINISH_AUTH"+res)
     
     //define the configs for your connection
     var config = {
@@ -32,7 +34,7 @@ router.get('/', function(req, res){
     Shopify.exchange_temporary_token(query_params, function(err, data){
         shopify_hidden_at=data['access_token'];
         // YOU HAVE SAVED YOUR ACCESS_TOKEN YAY!
-        console.log('temp token exchanged')
+        console.log(shopify_hidden_at)
     });
 });
 
