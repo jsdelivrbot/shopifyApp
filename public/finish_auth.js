@@ -16,7 +16,7 @@ router.get('/finish_auth', function(req, res){
     
     var query_params = req.query;
     
-    console.log("FINISH_AUTH"+res)
+    console.log(query_params)
     
     //define the configs for your connection
     var config = {
