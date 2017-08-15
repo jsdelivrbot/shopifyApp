@@ -3,7 +3,7 @@ var router = express.Router();//creates router object
 var shopifyAPI = require('shopify-node-api');
 
 //DEFINE LOCAL VARIABLES
-var ldb_uri_base = "http://localhost:5000";//THIS IS ONLY AN EXAMPLE!!
+var ldb_uri_base = "https://shopify-second-opinions-app.herokuapp.com";//THIS IS ONLY AN EXAMPLE!!
 var shopify_hidden_ss = "275648faae5fca94ba4950ee18fd2d66";
 var shopify_hidden_ak = "167922d6d9ace8e71795cb4c10074cf4";
 var shopify_hidden_shopname = "second-opinions-store";
