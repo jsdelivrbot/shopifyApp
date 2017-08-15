@@ -4,7 +4,7 @@ var shopifyAPI = require('shopify-node-api');//SHOPIFY
 
 //DEFINE LOCAL VARIABLES
 var shopify_hidden_at = "";//define empty variable for access token
-var ldb_uri_base = "http://localhost:5000";//THIS IS ONLY AN EXAMPLE!!
+var ldb_uri_base = "https://shopify-second-opinions-app.herokuapp.com";//THIS IS ONLY AN EXAMPLE!!
 var shopify_hidden_ss = "2a2134b27760c013e1eebd784d5dc6fe";
 var shopify_hidden_ak = "167922d6d9ace8e71795cb4c10074cf4";
 var shopify_hidden_shopname = "second-opinions-store";
@@ -37,32 +37,11 @@ router.get('/', function(req, res){
         console.log(Shopify.hostname())
         console.log(shopify_hidden_ak)
     });
+        
     
-    var post_data = {
-        "product": {
-            "body_html": "<strong>Hi there!</strong>"
-        }
-    }
+    // Trying to make request outside of module
     
-    var Shopify = new shopifyAPI({
-        shop: shopify_hidden_shopname,
-        shopify_api_key: shopify_hidden_ak,
-        access_token: shopify_hidden_at
-    })
-    
-    
-    Shopify.post('/admin/products.json', post_data, function(err, data, headers){
-        if (err){
-            console.log(err)
-        } else {
-            console.log(data)
-        }
-    })
-    
-    
-    /* Trying to make request outside of module
-    
-    var options = {
+    /*var options = {
         hostname: 'second-opinions-store.myshopify.com',
         port: 443,
         path: '/admin/products.json',
