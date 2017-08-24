@@ -17,6 +17,10 @@
         
         <style>
         
+            .container {
+                width: 95%;
+            }
+            
             .display-3 {
                 font-size: 2.9em;
             }
@@ -30,6 +34,37 @@
                 color: #3974A3;
             }
             
+            .intro {
+                color: #3e4444;
+            }
+            
+            .closed {
+                height: 200px;
+                width: 320px;
+                margin-top: 20px;
+                border: solid 1px black;
+            }
+            
+            .open {
+                height: 200px;
+                width: 320px;
+                margin-top: 20px;
+                margin-left: 50px;
+                border: solid 1px black;
+            }
+            
+            .well {
+                background-color: #3974A3;
+                color: lightgrey;
+                padding: 10px 5px;
+                border-radius: 10px;
+            }
+            
+            .contact-us2 {
+                color: ivory;
+            }
+        
+            
         </style>
         
         
@@ -39,14 +74,39 @@
     
         <div class="jumbotron">
             <h1 class="display-3">Thank you for installing Second Opinions!</h1>
-            <p class="lead">To add the Second Opinions button to your store, simply click the 'Add Button' link below.</p>
+            <p class="lead intro">The Second Opinions button should be visible on your store within the next few minutes, <a class="contact-us" href="#demo">like so.</a></p>
             <hr class="my-4">
-            <p>If you face any technical difficulties, contact us at: <span class="contact-us">feedback@secondopinions.help</span></p>
+            <p>We will start capturing data instantly. To access this data, please upgrade within the <a class="contact-us" href="http://apps.shopify.com/second-opinions">Shopify App store.</a></p>
+            <p>If you experience any technical difficulties, contact us at: <span class="contact-us">feedback@secondopinions.help</span></p>
             <p class="lead">
-            <a class="btn btn-primary btn-lg" href="#" role="button">Add Button!</a>
+            <a class="btn btn-primary btn-lg" href="https://secondopinions.help" role="button">Learn More!</a>
             </p>
+        </div>
+        
+        
+        <div class="container">
+            
+        <h3 id="demo">The Second Opinions Button</h3><br/>
+         
+        <div class="well">  
+        <ul>
+            <li>The Second Opinions button initially appears as a black label on the right hand side of the screen.
+            </li><br/>
+            <li>If the user remains on the product page for a set period of time, the full panel becomes visible.
+            </li><br/>
+            <li>This is shown in the diagrams below. For further information, please refer to the <a class="contact-us2" href="https://secondopinions.help">Second Opinions website.</a></li>
+        
+        </ul>
         </div> 
         
+        
+            <div>
+                <img class="closed" src="SecondOpinionsClosed.png">
+                <img class="open" src="SecondOpinionsOpened.png">
+
+            </div>
+           
+        </div>
         
         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     

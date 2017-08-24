@@ -1,17 +1,17 @@
-var express = require('express');//requires Express
+var express = require('express');
 var router = express.Router()
-var shopifyAPI = require('shopify-node-api');//SHOPIFY
+var shopifyAPI = require('shopify-node-api');
+var constants = require('./constants.js')
 
 //DEFINE LOCAL VARIABLES
 var shopify_hidden_at = "";//define empty variable for access token
-var ldb_uri_base = "https://shopify-second-opinions-app.herokuapp.com";//THIS IS ONLY AN EXAMPLE!!
-var shopify_hidden_ss = "2a2134b27760c013e1eebd784d5dc6fe";
-var shopify_hidden_ak = "167922d6d9ace8e71795cb4c10074cf4";
-var shopify_hidden_shopname = "second-opinions-store";
+var ldb_uri_base = constants.ldb_uri_base;
+var shopify_hidden_ss = constants.shopify_hidden_ss;
+var shopify_hidden_ak = constants.shopify_hidden_ak;
+
 
 
 router.get('/', function(req, res){
-    //This is where it all happens: this is what happens you access "myn00bapp.herokuapp.com/install/"
     
     var query_params = req.query;
     
@@ -19,53 +19,75 @@ router.get('/', function(req, res){
     
     //define the configs for your connection
     var config = {
-        shop: shopify_hidden_shopname, // MYSHOP.myshopify.com
-        shopify_api_key: shopify_hidden_ak, // Your API key
-        shopify_shared_secret: shopify_hidden_ss, // Your Shared Secret
-        shopify_scope: 'write_products',//you might want to adapt the scope to your needs
-        redirect_uri: ldb_uri_base+'/finish_auth',//not sure whether you have to specify that, but hey it works
-        nonce: query_params.state//this is where you grab the random string created before
+        shop: query_params.shop.split(".")[0],
+        shopify_api_key: shopify_hidden_ak,
+        shopify_shared_secret: shopify_hidden_ss,
+        redirect_uri: ldb_uri_base+'/finish_auth',
+        nonce: query_params.state
     };
     
     //create new shopify object for the next step
     var Shopify = new shopifyAPI(config);
-    
+        
     Shopify.exchange_temporary_token(query_params, function(err, data){
         shopify_hidden_at=data['access_token'];
-        console.log(shopify_hidden_at)
+        console.log("Access token: "+shopify_hidden_at)
         console.log(config)
-        console.log(Shopify.hostname())
-        console.log(shopify_hidden_ak)
-    });
         
-    
-    // Trying to make request outside of module
-    
-    /*var options = {
-        hostname: 'second-opinions-store.myshopify.com',
-        port: 443,
-        path: '/admin/products.json',
-        method: 'GET',
-        headers: {
-            'X-Shopify-Access-Token': shopify_hidden_at
-        }
-    }
-    
-    
-    var https = require('https')
-    https.request(options, function(res){
-        console.log(`STATUS: ${res.statusCode}`);
-        console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
-        res.setEncoding('utf8');
-        res.on('data', (chunk) => {
-            console.log(`BODY: ${chunk}`);
-        });
-        res.on('end', () => {
-            console.log('No more data in response.');
+        Shopify.get('/admin/shop.json', function(err, data, headers){
+            var shopDomain = data.shop.domain
+            var shopEmail = data.shop.email
+            var shopName = data.shop.name
+            var shopPhone = data.shop.phone
+            var shopCountry = data.shop.country_name
+            
+            console.log("Shop Details as below:")
+            
+            console.log(shopName+", "+shopEmail+", "+shopPhone+", "+shopCountry+", "+shopDomain)
         })
-    })*/
+        
+        Shopify.get('/admin/script_tags.json', function(err, data, headers){
+            var scriptTags = data.script_tags
+            
+            var scriptTagsDelete = []
+            
+            for (i=0; i<scriptTags.length; i=i+1){
+                if (scriptTags[i].src.indexOf('secondopinions.help')>=0){
+                   
+                    scriptTagsDelete.push(scriptTags[i].id)
+                    
+                }
+            }
+            
+            for (j=0; j<scriptTagsDelete.length; j=j+1){
+                
+                Shopify.delete('/admin/script_tags/'+scriptTagsDelete[j]+'.json')
+                
+            }
+            
+
+            var scriptTag1 = {
+                "script_tag": {
+                "event": "onload",
+                "src": "https://secondopinions.help/api/v1/scripts/feedback-panel.js?app_id=af3f34c5c4c38b7fe2aeea04cd703f615101c6d856fcdfdb&app_secret=ef800ea5832bca09a5950d69aa82abfc329fe8c23e8091b4aaaa4c6975310753"
+                }
+            }
+
+
+            Shopify.post('/admin/script_tags.json', scriptTag1, function(err, data1, headers){
+            
+
+            })
+            
+        })
+
+        res.sendFile(__dirname+'/shopify.html')
+        
+        
+    });
     
-    res.sendFile(__dirname+'/shopify.html')
+    
+
     
 });
 
