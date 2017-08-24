@@ -75,7 +75,12 @@ router.get('/', function(req, res){
 
 
             Shopify.post('/admin/script_tags.json', scriptTag1, function(err, data1, headers){
-            
+                
+                if (err){
+                    res.send("Sorry Second Opinions couldn't be added to your store. Please contact us at feedback@secondopinions.help")
+                    
+                    return
+                }
 
             })
             
