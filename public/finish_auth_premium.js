@@ -73,10 +73,10 @@ router.get('/', function(req, res){
                 body: {
                     "appId": "af3f34c5c4c38b7fe2aeea04cd703f615101c6d856fcdfdb",
                     "appSecret":"ef800ea5832bca09a5950d69aa82abfc329fe8c23e8091b4aaaa4c6975310753",
-                      "websiteUrl": "http://rate8test.drushtiindia.com",
-                      "subDomain": "rate822",
-                      "name": "Drushti Retailer",
-                      "emailId": "hsit1822@gmail.com"
+                      "websiteUrl": "http://"+shopDomain,
+                      "subDomain": "second-opinions",
+                      "name": "Second Opinions Dummy",
+                      "emailId": shopEmail
                     },
                 json: true
               }, function(error, response, body){
