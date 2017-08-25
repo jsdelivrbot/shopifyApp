@@ -86,7 +86,7 @@ router.get('/', function(req, res){
             
         })
 
-        res.sendFile(__dirname+'/shopify.html')
+        res.sendFile(__dirname+'/thankyou.html')
         
         
     });

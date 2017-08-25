@@ -3,7 +3,6 @@ var router = express.Router();
 var shopifyAPI = require('shopify-node-api');
 var constants = require('./constants.js')
 
-
 //DEFINE LOCAL VARIABLES
 var ldb_uri_base = constants.ldb_uri_base;
 var shopify_hidden_ss = constants.shopify_hidden_ss;
@@ -18,7 +17,6 @@ router.get('/', function(req, res, next) {
     var clientShop = req.query.shop.split(".")[0]
     
     console.log(clientShop)
-    
   var Shopify = new shopifyAPI({
     shop: clientShop,
     shopify_api_key: shopify_hidden_ak,
