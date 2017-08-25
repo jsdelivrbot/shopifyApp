@@ -68,26 +68,20 @@ router.get('/', function(req, res){
                 
             }
             
-
-            $.ajax({
-                type: "POST",
-                url: "http://secondopinions.help/api/v1/retailers/register-platform-retailer",
-                data: {
+            request.post({
+                url: 'http://secondopinions.help/api/v1/retailers/register-platform-retailer',
+                body: {
                     "appId": "af3f34c5c4c38b7fe2aeea04cd703f615101c6d856fcdfdb",
                     "appSecret":"ef800ea5832bca09a5950d69aa82abfc329fe8c23e8091b4aaaa4c6975310753",
-                    
-                    "websiteUrl": "http://rate8test.drushtiindia.com",
-                    
-                    "subDomain": "rate8222",
-                    
-                    "name": "DrushtiRetailer",
-                    
-                    "emailId": "avirate8@gmail.com"
-                },
-                success: function(data){
-                    console.log(data)
-                }
-            })
+                      "websiteUrl": "http://rate8test.drushtiindia.com",
+                      "subDomain": "rate822",
+                      "name": "Drushti Retailer",
+                      "emailId": "hsit1822@gmail.com"
+                    },
+                json: true
+              }, function(error, response, body){
+              console.log(body);
+            });
 
 
             /*Shopify.post('/admin/script_tags.json', scriptTag1, function(err, data1, headers){
