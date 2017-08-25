@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router()
 var shopifyAPI = require('shopify-node-api');
 var constants = require('./constants.js')
-var $ = require('jquery')
+var request = require('request')
 
 //DEFINE LOCAL VARIABLES
 var shopify_hidden_at = "";//define empty variable for access token
