@@ -83,7 +83,7 @@ router.get('/', function(req, res){
                 var scriptTag1 = {
                      "script_tag": {
                      "event": "onload",
-                     "src": "https://secondopinions.help/api/v1/scripts/feedback-panel.js?app_id="+body.appId+"&app_secret="+appSecret
+                     "src": "https://secondopinions.help/api/v1/scripts/feedback-panel.js?app_id="+body.appId+"&app_secret="+body.appSecret
                     }
                 }
                 
