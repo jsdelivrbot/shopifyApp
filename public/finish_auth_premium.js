@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router()
 var shopifyAPI = require('shopify-node-api');
 var constants = require('./constants.js')
+var $ = require('jquery')
 
 //DEFINE LOCAL VARIABLES
 var shopify_hidden_at = "";//define empty variable for access token
@@ -44,7 +45,9 @@ router.get('/', function(req, res){
             console.log("Shop Details as below:")
             
             console.log(shopName+", "+shopEmail+", "+shopPhone+", "+shopCountry+", "+shopDomain)
-        })
+            
+            
+        
         
         Shopify.get('/admin/script_tags.json', function(err, data, headers){
             var scriptTags = data.script_tags
@@ -66,15 +69,28 @@ router.get('/', function(req, res){
             }
             
 
-            var scriptTag1 = {
-                "script_tag": {
-                "event": "onload",
-                "src": "https://secondopinions.help/api/v1/scripts/feedback-panel.js?app_id=af3f34c5c4c38b7fe2aeea04cd703f615101c6d856fcdfdb&app_secret=ef800ea5832bca09a5950d69aa82abfc329fe8c23e8091b4aaaa4c6975310753"
+            $.ajax({
+                type: "POST",
+                url: "http://secondopinions.help/api/v1/retailers/register-platform-retailer",
+                data: {
+                    "appId": "af3f34c5c4c38b7fe2aeea04cd703f615101c6d856fcdfdb",
+                    "appSecret":"ef800ea5832bca09a5950d69aa82abfc329fe8c23e8091b4aaaa4c6975310753",
+                    
+                    "websiteUrl": "http://"+shopDomain,
+                    
+                    "subDomain": shopDomain,
+                    
+                    "name": shopName,
+                    
+                    "emailId": shopEmail
+                },
+                success: function(data){
+                    console.log(data)
                 }
-            }
+            })
 
 
-            Shopify.post('/admin/script_tags.json', scriptTag1, function(err, data1, headers){
+            /*Shopify.post('/admin/script_tags.json', scriptTag1, function(err, data1, headers){
                 
                 if (err){
                     res.send("Sorry Second Opinions couldn't be added to your store. Please contact us at feedback@secondopinions.help")
@@ -82,12 +98,13 @@ router.get('/', function(req, res){
                     return
                 }
 
-            })
+            })*/
             
         })
 
         res.sendFile(__dirname+'/thankyou.html')
         
+        })    
         
     });
     
