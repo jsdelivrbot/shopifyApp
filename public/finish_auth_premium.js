@@ -71,29 +71,34 @@ router.get('/', function(req, res){
             request.post({
                 url: 'http://secondopinions.help/api/v1/retailers/register-platform-retailer',
                 body: {
-                    "appId": "af3f34c5c4c38b7fe2aeea04cd703f615101c6d856fcdfdb",
-                    "appSecret":"ef800ea5832bca09a5950d69aa82abfc329fe8c23e8091b4aaaa4c6975310753",
+                    "appId": "af3f34c5c4c38b7fe2aeea04cd703f615101c6d856fcdfdb", "appSecret":"ef800ea5832bca09a5950d69aa82abfc329fe8c23e8091b4aaaa4c6975310753",
                       "websiteUrl": "http://"+shopDomain,
-                      "subDomain": "second-opinions",
-                      "name": "Second Opinions Dummy",
+                      "subDomain": shopName,
+                      "name": shopName,
                       "emailId": shopEmail
                     },
                 json: true
               }, function(error, response, body){
-              console.log(body);
+                
+                var scriptTag1 = {
+                     "script_tag": {
+                     "event": "onload",
+                     "src": "https://secondopinions.help/api/v1/scripts/feedback-panel.js?app_id="+body.appId+"&app_secret="+appSecret
+                    }
+                }
+                
+                Shopify.post('/admin/script_tags.json', scriptTag1, function(err, data1, headers){
+                
+                    if (err){
+                        res.send("Sorry Second Opinions couldn't be added to your store. Please contact us at feedback@secondopinions.help")
+                    
+                        return
+                    }
+
+                })
+  
             });
 
-
-            /*Shopify.post('/admin/script_tags.json', scriptTag1, function(err, data1, headers){
-                
-                if (err){
-                    res.send("Sorry Second Opinions couldn't be added to your store. Please contact us at feedback@secondopinions.help")
-                    
-                    return
-                }
-
-            })*/
-            
         })
 
         res.sendFile(__dirname+'/thankyou.html')
@@ -101,10 +106,7 @@ router.get('/', function(req, res){
         })    
         
     });
-    
-    
-
-    
+       
 });
 
 module.exports = router;
