@@ -76,13 +76,13 @@ router.get('/', function(req, res){
                     "appId": "af3f34c5c4c38b7fe2aeea04cd703f615101c6d856fcdfdb",
                     "appSecret":"ef800ea5832bca09a5950d69aa82abfc329fe8c23e8091b4aaaa4c6975310753",
                     
-                    "websiteUrl": "http://"+shopDomain,
+                    "websiteUrl": "http://rate8test.drushtiindia.com",
                     
-                    "subDomain": shopDomain,
+                    "subDomain": "rate8222",
                     
-                    "name": shopName,
+                    "name": "DrushtiRetailer",
                     
-                    "emailId": shopEmail
+                    "emailId": "avirate8@gmail.com"
                 },
                 success: function(data){
                     console.log(data)
