@@ -47,14 +47,14 @@ router.get('/', function(req, res){
             console.log(shopName+", "+shopEmail+", "+shopPhone+", "+shopCountry+", "+shopDomain)
             
             
-        Shopify.post('/admin/recurring_application_charges.json', {
+        /*Shopify.post('/admin/recurring_application_charges.json', {
             "recurring_application_charge": {
                 "name": "Second Opinions Premier",
                 "price": 10.0,
                 "trial_days": 7,
                 "return_url": "https://shopify-second-opinions-app.herokuapp.com/finish_auth_premium"
             }
-        })
+        })*/
         
         Shopify.get('/admin/script_tags.json', function(err, data, headers){
             var scriptTags = data.script_tags
