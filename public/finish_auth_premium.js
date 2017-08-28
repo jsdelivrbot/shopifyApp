@@ -51,7 +51,8 @@ router.get('/', function(req, res){
             "recurring_application_charge": {
                 "name": "Second Opinions Premier",
                 "price": 10.0,
-                "trial_days": 7
+                "trial_days": 7,
+                "return_url": "https://shopify-second-opinions-app.herokuapp.com/finish_auth_premium"
             }
         })
         
