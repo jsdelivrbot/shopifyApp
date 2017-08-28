@@ -53,8 +53,8 @@
             <p>Select "Premium" to either enter at the premium tier, or to upgrade from the free tier to the premium tier.</p>
             <p><b>We automatically give all Shopify merchants a 7 day free trial. After 7 days, your Shopify account will be billed on a monthly basis, and you may cancel - without notice - any time.</b></p>
             <p class="lead">
-            <a class="btn btn-secondary btn-lg" href="install.js" role="button">Free Tier</a>
-            <a class="btn btn-primary btn-lg" href="installpremium.js" role="button">Premium Tier</a>
+            <a class="btn btn-secondary btn-lg" id="free" role="button">Free Tier</a>
+            <a class="btn btn-primary btn-lg" id="premium" role="button">Premium Tier</a>
             </p>
     
         </div>
@@ -69,9 +69,24 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
         
         <script type="text/javascript">
-        
             
+            $( document ).ready(function(){
+                var params = window.location.search.split("&")[1].split("=")[1].split(".")[0]
+              
+                $("#premium").click(function(){
+                    $.ajax({
+                        url: 'http://localhost:5000/install_premium',
+                        type: 'GET',
+                        data: {
+                            shop: params
+                        },
+                        success: alert("hello")
+                        
+                    })
+                })
         
+            })
+            
         </script>
         
   
