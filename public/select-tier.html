@@ -17,8 +17,17 @@
         
         <style>
         
-            .btn-primary {
+            .btn1 {
                 margin-left: 20px;
+                background-color: #3974A3;
+            }
+            
+            .btn-text {
+                color: white;
+            }
+            
+            .btn-text:hover {
+                color: lightgrey
             }
             
             .btn { 
@@ -34,6 +43,7 @@
                 float: right;
                 margin-top: -35px;
             }
+        
             
           
         
@@ -54,7 +64,7 @@
             <p><b>We automatically give all Shopify merchants a 7 day free trial. After 7 days, your Shopify account will be billed on a monthly basis, and you may cancel - without notice - any time.</b></p>
             <p class="lead">
             <a class="btn btn-secondary btn-lg" id="free" role="button">Free Tier</a>
-            <a class="btn btn-primary btn-lg" id="premium" role="button">Premium Tier</a>
+            <a class="btn btn-lg btn1" id="premium" role="button"><span class="btn-text">Premium Tier</span></a>
             </p>
     
         </div>
@@ -71,21 +81,21 @@
         <script type="text/javascript">
             
             $( document ).ready(function(){
-                var params = window.location.search.split("&")[1].split("=")[1].split(".")[0]
-              
+                var params = window.location.search.split("&")
+                
+                var paramUse = params[0]+"&"+params[1]
+                
+                
                 $("#premium").click(function(){
-                    $.ajax({
-                        url: 'http://localhost:5000/install_premium',
-                        type: 'GET',
-                        data: {
-                            shop: params
-                        },
-                        success: alert("hello")
+                    window.location.href = "https://shopify-second-opinions-app.herokuapp.com/install_premium"+paramUse
+                })
+                
+                $("#free").click(function(){
+                    window.location.href = "https://shopify-second-opinions-app.herokuapp.com/install"+paramUse
+                })
                         
                     })
-                })
-        
-            })
+            
             
         </script>
         
