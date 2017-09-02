@@ -23,7 +23,6 @@ router.get('/', function(req, res){
         shop: query_params.shop.split(".")[0],
         shopify_api_key: shopify_hidden_ak,
         shopify_shared_secret: shopify_hidden_ss,
-        redirect_uri: ldb_uri_base+'/finish_auth_premium',
         nonce: query_params.state
     };
     

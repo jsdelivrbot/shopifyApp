@@ -24,11 +24,11 @@ router.get('/', function(req, res, next) {
     shopify_api_key: shopify_hidden_ak,
     shopify_shared_secret: shopify_hidden_ss,
     shopify_scope: 'write_script_tags',
-    redirect_uri: ldb_uri_base+'/finish_auth',
+    redirect_uri: ldb_uri_base+'/select-tier.html',
     nonce: noncestring
   });
     
-console.log("redirecting to: " + ldb_uri_base+'/finish_auth');    
+console.log("redirecting to: " + ldb_uri_base+'/select-tier.html');    
   var auth_url = Shopify.buildAuthURL();
   res.redirect(auth_url);//this is where Shopify redirects you to ".../finish_auth/"!
 });

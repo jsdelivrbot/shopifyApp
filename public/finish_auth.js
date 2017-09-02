@@ -22,9 +22,10 @@ router.get('/', function(req, res){
         shop: query_params.shop.split(".")[0],
         shopify_api_key: shopify_hidden_ak,
         shopify_shared_secret: shopify_hidden_ss,
-        redirect_uri: ldb_uri_base+'/finish_auth',
         nonce: query_params.state
     };
+    
+    console.log(config)
     
     //create new shopify object for the next step
     var Shopify = new shopifyAPI(config);
