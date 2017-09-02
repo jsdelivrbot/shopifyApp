@@ -80,17 +80,19 @@
         
         <script type="text/javascript">
             
+            var uri = "http://localhost:5000"
+            
             $( document ).ready(function(){
                 var params = window.location.search.split("&")
                 
                 var paramUse = params[0]+"&"+params[1]+"&"+params[2]+"&"+params[3]
                 
                 $("#premium").click(function(){
-                    window.location.href = "https://shopify-second-opinions-app.herokuapp.com/finish_auth_premium"+paramUse
+                    window.location.href = uri+"/finish_auth_premium"+paramUse
                 })
                 
                 $("#free").click(function(){
-                    window.location.href = "https://shopify-second-opinions-app.herokuapp.com/finish_auth"+paramUse
+                    window.location.href = uri+"/finish_auth"+paramUse
                 })
                         
                     })
